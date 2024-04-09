@@ -63,6 +63,18 @@ Ejecución de la aplicación de forma local. La aplicación se ejecutará en el 
 > FLASK_APP=./src/main.py flask run -h 0.0.0.0 -p 9876
 > ```
 
+### Ejecución 🐳 docker-compose:
+
+Con docker-compose solo debe ejecutar el siguiente comando en la raiz del proyecto:
+
+> ```bash
+> docker-compose up .
+> ```
+
+Si desea configurar puertos y palabra clave diferente puede modificar el archivo ```docker-compose.yml```
+
+![alt text](image.png)
+
 ## Uso
 
 El objetivo de este microservicio es que cientos de sistemas internos puedan consultar si un email está en la lista negra global de la empresa o no, así como agregar emails a la lista negra global.
