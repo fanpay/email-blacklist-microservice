@@ -1,0 +1,248 @@
+{
+	"info": {
+		"_postman_id": "6bd2a4c5-151b-45cb-82bc-503fc98a4f28",
+		"name": "EMAIL-BLACKLIST-MS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30660012"
+	},
+	"item": [
+		{
+			"name": "Generate JWT Token",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();",
+							"pm.collectionVariables.set('token', response.token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9876/blacklists/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9876",
+					"path": [
+						"blacklists",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Email To Blacklist",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const email = pm.variables.replaceIn(\"{{$randomEmail}}\").toLowerCase();",
+							"const blocked_reason = pm.variables.replaceIn(\"{{$randomLoremWords}}\");",
+							"const app_uuid = pm.variables.replaceIn(\"{{$guid}}\")",
+							"",
+							"",
+							"pm.collectionVariables.set('BLOCKED_EMAIL', email);",
+							"pm.collectionVariables.set('BLOCKED_REASON', blocked_reason);",
+							"pm.collectionVariables.set('BLOCKED_APP_UUID', app_uuid);",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"{{BLOCKED_EMAIL}}\",\n    \"app_uuid\":\"{{BLOCKED_APP_UUID}}\",\n    \"blocked_reason\": \"{{BLOCKED_REASON}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9876/blacklists",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9876",
+					"path": [
+						"blacklists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Email In Blacklist",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9876/blacklists/{{BLOCKED_EMAIL}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9876",
+					"path": [
+						"blacklists",
+						"{{BLOCKED_EMAIL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Non Registered Email In Blacklist",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const email = pm.variables.replaceIn(\"{{$randomEmail}}\").toLowerCase();",
+							"",
+							"pm.collectionVariables.set('UNREGISTERED_BLOCKED_EMAIL', email);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9876/blacklists/{{UNREGISTERED_BLOCKED_EMAIL}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9876",
+					"path": [
+						"blacklists",
+						"{{UNREGISTERED_BLOCKED_EMAIL}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "email_registered",
+			"value": "a"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "BLOCKED_EMAIL",
+			"value": ""
+		},
+		{
+			"key": "BLOCKED_REASON",
+			"value": ""
+		},
+		{
+			"key": "BLOCKED_APP_UUID",
+			"value": ""
+		},
+		{
+			"key": "UNREGISTERED_BLOCKED_EMAIL",
+			"value": ""
+		}
+	]
+}
