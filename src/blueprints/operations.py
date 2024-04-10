@@ -10,7 +10,7 @@ from ..commands.blacklist_reset import ViewBlackListReset
 operations_blueprint = Blueprint("operations", __name__)
 
 
-@operations_blueprint.route("/ping", methods=["GET"])
+@operations_blueprint.route("/blacklists/ping", methods=["GET"])
 def ping():
     return ViewPing().execute()
 

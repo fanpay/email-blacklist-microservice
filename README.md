@@ -60,7 +60,7 @@ Debe instalar las dependencias del proyecto antes de ejecutarlo. Se recomienda u
 Ejecución de la aplicación de forma local. La aplicación se ejecutará en el puerto `9876`:
 
 > ```bash
-> FLASK_APP=./src/main.py flask run -h 0.0.0.0 -p 9876
+> FLASK_APP=./application.py flask run -h 0.0.0.0 -p 9876
 > ```
 
 ### Ejecución 🐳 docker-compose:
