@@ -10,10 +10,11 @@ from ..extensions import db
 logging.basicConfig(level=logging.INFO)
 
 class ViewAddEmail(BaseCommannd):
-    def __init__(self, data_json):
+    def __init__(self, data_json, client_ip):
         self.validate_data(data_json)
         self.validate_existing_email(data_json["email"])
         
+        self.client_ip = client_ip
         self.data_json = data_json
 
     def execute(self):
@@ -21,6 +22,7 @@ class ViewAddEmail(BaseCommannd):
             email=self.data_json["email"],
             app_uuid=self.data_json["app_uuid"],
             blocked_reason=self.data_json.get("blocked_reason", None),
+            from_ip = self.client_ip
         )
 
         db.session.add(new_email)

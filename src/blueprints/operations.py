@@ -19,7 +19,9 @@ def ping():
 @jwt_required()
 def add_email_to_blacklist():
     data = request.get_json()
-    result = ViewAddEmail(data).execute()
+    client_ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+    print(f"La solicitud fue realizada desde la dirección IP: {client_ip}", flush=True)
+    result = ViewAddEmail(data, client_ip).execute()
     response_data = {
         "message": f"Email {result.email} fue agregado exitosamente.",
         "createdAt": result.created_at.strftime("%Y-%m-%dT%H:%M:%S"),
