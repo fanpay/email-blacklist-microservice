@@ -13,7 +13,7 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # Set environment variables
-ENV FLASK_APP="src/main.py"
+ENV FLASK_APP="application.py"
 #ENV FLASK_DEBUG=1
 #ENV FLASK_ENV=development
 

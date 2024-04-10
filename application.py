@@ -4,9 +4,9 @@ loaded = load_dotenv()
 
 from flask import Flask, jsonify
 from flask_jwt_extended import JWTManager
-from .blueprints.operations import operations_blueprint
-from .errors.errors import ApiError
-from .extensions import db
+from src.blueprints.operations import operations_blueprint
+from src.errors.errors import ApiError
+from src.extensions import db
 import os
 
 
