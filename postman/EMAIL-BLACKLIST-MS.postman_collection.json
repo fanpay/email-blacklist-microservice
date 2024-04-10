@@ -7,6 +7,24 @@
 	},
 	"item": [
 		{
+			"name": "Check Health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/blacklists/ping",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"blacklists",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Generate JWT Token",
 			"event": [
 				{
@@ -39,12 +57,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9876/blacklists/auth",
-					"protocol": "http",
+					"raw": "{{HOST}}/blacklists/auth",
 					"host": [
-						"localhost"
+						"{{HOST}}"
 					],
-					"port": "9876",
 					"path": [
 						"blacklists",
 						"auth"
@@ -108,12 +124,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:9876/blacklists",
-					"protocol": "http",
+					"raw": "{{HOST}}/blacklists",
 					"host": [
-						"localhost"
+						"{{HOST}}"
 					],
-					"port": "9876",
 					"path": [
 						"blacklists"
 					]
@@ -137,12 +151,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9876/blacklists/{{BLOCKED_EMAIL}}",
-					"protocol": "http",
+					"raw": "{{HOST}}/blacklists/{{BLOCKED_EMAIL}}",
 					"host": [
-						"localhost"
+						"{{HOST}}"
 					],
-					"port": "9876",
 					"path": [
 						"blacklists",
 						"{{BLOCKED_EMAIL}}"
@@ -181,12 +193,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9876/blacklists/{{UNREGISTERED_BLOCKED_EMAIL}}",
-					"protocol": "http",
+					"raw": "{{HOST}}/blacklists/{{UNREGISTERED_BLOCKED_EMAIL}}",
 					"host": [
-						"localhost"
+						"{{HOST}}"
 					],
-					"port": "9876",
 					"path": [
 						"blacklists",
 						"{{UNREGISTERED_BLOCKED_EMAIL}}"
@@ -243,6 +253,11 @@
 		{
 			"key": "UNREGISTERED_BLOCKED_EMAIL",
 			"value": ""
+		},
+		{
+			"key": "HOST",
+			"value": "http://localhost:3000",
+			"type": "string"
 		}
 	]
 }
