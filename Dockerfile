@@ -1,5 +1,5 @@
 # Use an official Python runtime as the base image
-FROM python:3.8-slim
+FROM python:3.9-slim
 
 # Set the working directory in the container to /app
 WORKDIR /app
@@ -13,7 +13,7 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # Set environment variables
-ENV FLASK_APP="src/main.py"
+ENV FLASK_APP="application.py"
 #ENV FLASK_DEBUG=1
 #ENV FLASK_ENV=development
 
