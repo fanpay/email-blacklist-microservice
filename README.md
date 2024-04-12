@@ -1,4 +1,4 @@
-# email-blacklist-microservice
+# Microservicio para controlar lista negra de correos electrónicos
 
 ## Índice
 
@@ -26,7 +26,7 @@ docker exec -it db psql -U postgres
 Para crear la base de datos dentro del contenedor:
 ```sql
 CREATE USER admin_db;
-CREATE DATABASE blacklist OWNER admin_db;
+CREATE DATABASE blacklist_db OWNER admin_db;
 ALTER USER admin_db WITH PASSWORD 'admin_db';
 exit
 ```
